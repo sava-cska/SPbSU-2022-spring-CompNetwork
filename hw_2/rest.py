@@ -11,8 +11,8 @@ class Item(object):
     def toJSON(self):
         return self.__dict__
 
-shop_list = [Item('Ball', 'Round', 'ball.jpg'), 
-             Item('Table', 'Big', 'table.jpg')]
+shop_list = [Item('Ball', 'Round', 'product_images/ball.jpg'), 
+             Item('Table', 'Big', 'product_images/table.jpg')]
 
 def list_to_JSON(shop_list):
     return [item.toJSON() for item in shop_list]
@@ -38,7 +38,7 @@ def add_item():
     or image is None or 'picture' not in image:
         abort(400)
     new_item = Item(request_data['name'], request_data['description'], image['picture'].filename)
-    new_item.picture_file = new_item.id + '__' + new_item.picture_file
+    new_item.picture_file = 'product_images/' + new_item.id + '__' + new_item.picture_file
     image['picture'].save(new_item.picture_file)
     shop_list.append(new_item)
     return jsonify({'shop_list': list_to_JSON(shop_list)}), 201
@@ -56,7 +56,7 @@ def update_item(item_id):
             if 'description' in request_data:
                 item.description = request_data['description']
             if image is not None and 'picture' in image:
-                item.picture_file = item.id + '__' + image['picture'].filename
+                item.picture_file = 'product_images/' + item.id + '__' + image['picture'].filename
                 image['picture'].save(item.picture_file)
             return jsonify({'item': item.toJSON()}), 200
     abort(400)
