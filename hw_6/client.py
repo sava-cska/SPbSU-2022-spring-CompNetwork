@@ -30,7 +30,7 @@ def download_file(args):
             ftp.retrbinary('RETR {}'.format(server_path.name), file.write)
         print('Download file {}'.format(local_path))
 
-if __name__ == '__main__':
+def create_parser():
     parser = argparse.ArgumentParser(description='Console FTP client.')
     subparsers = parser.add_subparsers()
 
@@ -72,6 +72,10 @@ if __name__ == '__main__':
         help='Local path to destination.',
     )
     download_parser.set_defaults(func=download_file)
+    
+    return parser
 
+if __name__ == '__main__':
+    parser = create_parser()
     args = parser.parse_args()
     args.func(args)
