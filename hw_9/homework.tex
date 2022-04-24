@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+
+\usepackage{complexity}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[russian,colorlinks=true,urlcolor=red,linkcolor=blue]{hyperref}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+
+\def\THEME{Домашнее задание 9}
+\newcommand{\PrE}{\mathbb{E}}
+\newcommand{\PrD}{\mathbb{D}}
+\newcommand{\PrP}{\mathbb{P}}
+
+\begin{document}
+
+\begin{center}
+\vspace*{0mm}
+{\LARGE \bf \THEME}
+\end{center}
+
+\begin{center}
+{\Large \it Wireshark. Ping}
+\end{center}
+
+\begin{enumerate}
+
+\item Мой \texttt{IP}-адрес~--- \texttt{192.168.0.171}, \texttt{IP}-адрес хоста назначения~--- \texttt{104.16.229.25}.
+
+\item Потому что \texttt{ICMP}~--- это протокол сетевого уровня, а номера портов нужны для протоколов транспортного и прикладного уровней.
+
+\item \texttt{ICMP}-тип пакета запроса~--- \texttt{8 (Echo (ping) request)}, кодовый номер~--- \texttt{0}. Помимо полей типа и кодового номера есть поля контрольной суммы, идентификатора, порядкового номера и поле данных. На поля контрольной суммы, идентификатора и порядкового номера отводится по 2 байта на каждое.
+
+\item \texttt{ICMP}-тип пакета ответа~--- \texttt{0 (Echo (ping) reply)}, кодовый номер~--- \texttt{0}. Помимо полей типа и кодового номера есть поля контрольной суммы, идентификатора, порядкового номера и поле данных. На поля контрольной суммы, идентификатора и порядкового номера отводится по 2 байта на каждое.
+
+\end{enumerate}
+
+Скрины в папке \texttt{wireshark\_ping}.
+
+\begin{center}
+{\Large \it Wireshark. Traceroute}
+\end{center}
+
+\begin{enumerate}
+
+\item Отличается лишь размером поля данных (было 32 байта, а теперь 64).
+
+\item \texttt{ICMP}-пакет с сообщением об ошибке содержит внутри себя поля \texttt{ICMP}-типа сообщения, кодового номера, контрольной суммы, 4 неиспользуемых байта, выставленных в 0, \texttt{IP}-заголовки отправленной \texttt{ICMP}-дейтаграммы и саму отправленную \texttt{ICMP}-дейтаграмму (если тип пакета 11) либо \texttt{UDP}-заголовки (если тип пакета 3).
+
+\item Три последних пакета, полученных исходным хостом,~--- это обычные \texttt{ICMP}-пакеты, соответствующие ответу на \texttt{ping} запрос (как и в задании \texttt{wireshark.ping}). Они отличаются от \texttt{ICMP}-пакетов с ошибкой тем, что не содержат \texttt{IP}-заголовки, а также содержат не всю отправленную в качестве запроса \texttt{ICMP}-дейтаграмму, а лишь поля идентификатора, порядкового номера и данных. Также у пакета с ошибкой байты, соответствующие идентификатору и порядковому номеру, равны 0, а её тип равен 11 либо 3. Эти отличия объясняются тем, что недошедшую дейтаграмму надо повторно отправить, для этого её вкладывают в ответное сообщение в случае типа 11, а в случае типа 3 \texttt{UDP}-заголовки позволяют понять, на какой порт отправлять не нужно.
+
+\item Да, например на последнем этапе. Маршрутизатор \texttt{162.158.100.40} находится в Хельсинки в Финляндии, а маршрутизатор \texttt{104.16.229.25} находится в США.
+
+Скрины в папке \texttt{wireshark\_traceroute}.
+
+\end{enumerate}
+
+\end{document}
