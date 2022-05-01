@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+
+\usepackage{complexity}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[russian,colorlinks=true,urlcolor=red,linkcolor=blue]{hyperref}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+
+\def\THEME{Домашнее задание 10}
+\newcommand{\PrE}{\mathbb{E}}
+\newcommand{\PrD}{\mathbb{D}}
+\newcommand{\PrP}{\mathbb{P}}
+
+\begin{document}
+
+\begin{center}
+\vspace*{0mm}
+{\LARGE \bf \THEME}
+\end{center}
+
+\begin{center}
+{\Large \it Wireshark. IP}
+\end{center}
+
+\begin{enumerate}
+
+\item Мой \texttt{IP}-адрес~--- \texttt{192.168.0.171}.
+
+\item Указан протокол \texttt{ICMP}.
+
+\item В \texttt{IP}-заголовке 20 байт, а полезная нагрузка составляет $56 - 20 = 36$ байт.
+
+\item
+
+\begin{enumerate}
+
+\item У последовательных дейтаграмм в \texttt{IP}-заголовках различаются поля идентификатора, TTL и контрольной суммы.
+
+\item Все остальные поля остаются неизменными. Поскольку мы отсылаем один и тот же пакет с разным TTL, то так и должно быть, что у дейтаграмм все поля, кроме идентификатора, TTL и контрольной суммы, остаются неизменными, а отмеченные поля меняются.
+
+\item Это поле увеличивается на 1 с каждой последующей дейтаграммой.
+
+\end{enumerate}
+
+\end{enumerate}
+
+Скрины в папке \texttt{wireshark\_ip}.
+
+
+\end{document}
