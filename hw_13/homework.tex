@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+
+\usepackage{complexity}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[russian,colorlinks=true,urlcolor=red,linkcolor=blue]{hyperref}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+
+\def\THEME{Домашнее задание 13}
+\newcommand{\PrE}{\mathbb{E}}
+\newcommand{\PrD}{\mathbb{D}}
+\newcommand{\PrP}{\mathbb{P}}
+
+\begin{document}
+
+\begin{center}
+\vspace*{0mm}
+{\LARGE \bf \THEME}
+\end{center}
+
+\begin{center}
+{\Large \it Wireshark. DHCP}
+\end{center}
+
+\begin{enumerate}
+
+\item Сообщения \texttt{DHCP} посылаются поверх протокола \texttt{UDP}.
+
+\item Адрес канального уровня моего компьютера~--- \texttt{e4:aa:ea:63:26:c5}.
+
+\item Значение \texttt{TransactionID} равняется \texttt{0xa490d293}. Это число нужно, чтобы верно идентифицировать все сообщения одного процесса (например, как в этом случае, процесса получения \texttt{ip}-адреса), поскольку во всех сообщениях \texttt{TransactionID} совпадает.
+
+\item \texttt{ip}-адрес источника в дейтаграмме, отправленной с хоста,~--- $0.0.0.0$, а \texttt{ip}-адрес адресата~--- $255.255.255.255$.
+
+\item \texttt{ip}-адрес \texttt{DHCP}-сервера~--- $192.168.0.1$.
+
+\item \texttt{DHCP}-сервер выдаёт \texttt{ip}-адрес хосту на некоторое время, называемое \textit{временем аренды}, а по его истечении хост должен запросить новый адрес, который, возможно, будет совпадать с предыдущим. Это делается, чтобы один \texttt{ip}-адрес не закреплялся навечно за некоторым хостом. В текущем задании срок аренды~--- 1 день.
+
+\end{enumerate}
+
+Скрины в папке \texttt{wireshark\_dhcp}.
+
+\end{document}
