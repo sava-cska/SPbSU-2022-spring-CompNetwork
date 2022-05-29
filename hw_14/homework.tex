@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+
+\usepackage{complexity}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[russian,colorlinks=true,urlcolor=red,linkcolor=blue]{hyperref}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+
+\def\THEME{Домашнее задание 14}
+\newcommand{\PrE}{\mathbb{E}}
+\newcommand{\PrD}{\mathbb{D}}
+\newcommand{\PrP}{\mathbb{P}}
+
+\begin{document}
+
+\begin{center}
+\vspace*{0mm}
+{\LARGE \bf \THEME}
+\end{center}
+
+\begin{center}
+{\Large \it Wireshark. Ethernet}
+\end{center}
+
+\begin{enumerate}
+
+\item \texttt{Ethernet}-адрес моего компьютера~--- \texttt{e4:aa:ea:63:26:c5}.
+
+\item \texttt{LiteonTe\_63:26:c5}~--- мой компьютер.
+
+\item Исходный адрес~--- \texttt{b0:be:76:1b:79:0e}. Этот адрес соответствует устройству \texttt{Tp-LinkT\_1b:79:0e}~--- роутеру.
+
+\item Адрес назначения~--- \texttt{e4:aa:ea:63:26:c5}. Это адрес моего компьютера.
+
+\end{enumerate}
+
+Скрины в папке \texttt{wireshark\_ethernet}.
+
+\begin{center}
+{\Large \it Wireshark. ARP}
+\end{center}
+
+\begin{enumerate}
+
+\item Исходный адрес~--- \texttt{e4:aa:ea:63:26:c5}, конечный адрес~--- \texttt{ff:ff:ff:ff:ff:ff}.
+
+\item Да, в запросе указан \texttt{ip}-адрес моего компьюьтера \texttt{192.168.0.113}, а в ответе~--- \texttt{ip}-адрес роутера \texttt{192.168.0.1}.
+
+\item \texttt{Target MAC address: 00:00:00\_00:00:00} в сообщении-запросе.
+
+\item \texttt{Sender MAC address: Tp-LinkT\_1b:79:0e} в сообщении-ответе.
+
+\end{enumerate}
+
+Скрины в папке \texttt{wireshark\_arp}.
+
+\end{document}
